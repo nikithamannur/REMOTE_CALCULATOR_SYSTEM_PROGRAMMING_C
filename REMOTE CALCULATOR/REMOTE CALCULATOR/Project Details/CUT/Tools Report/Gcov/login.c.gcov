@@ -1,0 +1,326 @@
+        -:    0:Source:src/login.c
+        -:    0:Graph:../ToolsReport/GCOV/Client.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    1:#include <stdio.h>   //Including required Header files
+        -:    2:#include<stdlib.h>
+        -:    3:#include<string.h>
+        -:    4:#define maxlen 20
+        -:    5:#define adminid "admin"
+        -:    6:#define adminpwd "abc@123"
+        -:    7:
+        -:    8:
+        -:    9:struct user{
+        -:   10:	char username[maxlen];
+        -:   11:	char password[maxlen];
+        -:   12:};
+        -:   13:
+        -:   14:
+function checkpassword called 0 returned 0% blocks executed 0%
+    #####:   15:int checkpassword(char *a, char*b)
+        -:   16:{
+    #####:   17:	if(strcmp(a,b)==0)
+branch  0 never executed
+branch  1 never executed
+    #####:   18:	return 1;
+        -:   19:	
+    #####:   20:	return 0;
+        -:   21:
+        -:   22:}
+        -:   23:
+        -:   24:
+        -:   25:struct user USERS[10];
+        -:   26:int no_of_users=0;
+        -:   27:
+function usernamecheck called 0 returned 0% blocks executed 0%
+    #####:   28:int usernamecheck(char * key)
+        -:   29:{
+    #####:   30:	for(int i=0;i<no_of_users;i++)
+branch  0 never executed
+branch  1 never executed
+        -:   31:	{
+    #####:   32:		if(strcmp(USERS[i].username,key)==0)
+branch  0 never executed
+branch  1 never executed
+        -:   33:		{
+    #####:   34:		return 1;
+        -:   35:		}
+        -:   36:	}
+    #####:   37:	return 0;
+        -:   38:
+        -:   39:}
+function displayusers called 0 returned 0% blocks executed 0%
+    #####:   40:void displayusers()
+        -:   41:{
+        -:   42:	
+    #####:   43:	printf("\n\t\t\t__________________________________________________________________________________\n");
+call    0 never executed
+    #####:   44:	printf("\t\t\t ALL Registered Users  \n");
+call    0 never executed
+    #####:   45:	printf("\t\t\t__________________________________________________________________________________\n");
+call    0 never executed
+    #####:   46:	printf("\t\t\t USERNAME   \t\t\t PASSWORD");
+call    0 never executed
+    #####:   47:	for(int i=0;i<no_of_users;i++)
+branch  0 never executed
+branch  1 never executed
+        -:   48:	{
+    #####:   49:		printf("\n\t\t\t %s   \t\t\t %s\n",USERS[i].username,USERS[i].password);
+call    0 never executed
+        -:   50:		
+        -:   51:	}
+    #####:   52:	return;
+        -:   53:
+        -:   54:}
+        -:   55:
+        -:   56:
+function registeruser called 0 returned 0% blocks executed 0%
+    #####:   57:int registeruser(){
+        -:   58:	char uname[20];
+        -:   59:	char pwd[20];
+    #####:   60:	        system("clear");
+call    0 never executed
+    #####:   61:	printf("\n\n\t\t\t\t    REMOTE CALCULATOR ");
+call    0 never executed
+    #####:   62:	printf("\n\n\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Client Side \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+call    0 never executed
+    #####:   63:		printf("\n\n\t\t\t_________________________________________\n\n");
+call    0 never executed
+        -:   64:		//printf("\n\n");
+    #####:   65:		printf("\t\t\t\t\t -- Register --\n\n");
+call    0 never executed
+    #####:   66:		printf("\t\t\tEnter Username :  ");
+call    0 never executed
+    #####:   67:		fgets(uname,20,stdin);
+call    0 never executed
+call    1 never executed
+    #####:   68:		uname[strlen(uname)-1]='\0';
+    #####:   69:		printf("\n\n");
+call    0 never executed
+    #####:   70:		printf("\t\t\tEnter Password :  ");
+call    0 never executed
+    #####:   71:		fgets(pwd,20,stdin);
+call    0 never executed
+call    1 never executed
+    #####:   72:		pwd[strlen(pwd)-1]='\0';
+        -:   73:		
+        -:   74:		//ID CHECK IF ALREADY EXISTS		
+    #####:   75:		if(usernamecheck(uname))
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   76:		{
+    #####:   77:			printf("\t\t\tUsername already exists ");
+call    0 never executed
+    #####:   78:			return 0;
+        -:   79:		}
+        -:   80:		
+    #####:   81:		strcpy(USERS[no_of_users].username,uname);
+    #####:   82:		strcpy(USERS[no_of_users].password,pwd);
+        -:   83:		
+    #####:   84:		no_of_users++;
+    #####:   85:		printf("\n\n\t\t\t Registered Successfully !!!\n\n");
+call    0 never executed
+    #####:   86:			return 0;
+        -:   87:	
+        -:   88:
+        -:   89:}
+function getdetails called 0 returned 0% blocks executed 0%
+    #####:   90:struct user getdetails(int x)
+        -:   91:{
+        -:   92:	char str[10];
+        -:   93:	struct user newuser;
+        -:   94:	char uname[20];
+        -:   95:	char pwd[20];
+    #####:   96:	if(x==1)
+branch  0 never executed
+branch  1 never executed
+    #####:   97:	strcpy(str,"CLIENT");
+        -:   98:	else
+    #####:   99:	strcpy(str,"SERVER");
+    #####:  100:	int choice=0;
+    #####:  101:	int Banker_pass=0;
+        -:  102:
+    #####:  103:	system("clear");
+call    0 never executed
+        -:  104:
+    #####:  105:	printf("\n\nREMOTE CALCULATOR ",str);
+call    0 never executed
+        -:  106:	//printf("\n\n\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2%s SIDE \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2",str);
+    #####:  107:	printf("\n\n%s SIDE ",str);
+call    0 never executed
+    #####:  108:		printf("\n\n_________________________________________\n\n");
+call    0 never executed
+        -:  109:		//printf("\n\n");
+    #####:  110:		printf("ENTER USERNAME :  ");
+call    0 never executed
+    #####:  111:		fgets(newuser.username,20,stdin);
+call    0 never executed
+call    1 never executed
+    #####:  112:		newuser.username[strlen(newuser.username)-1]='\0';
+    #####:  113:		printf("\n\n");
+call    0 never executed
+    #####:  114:		printf("ENTER PASSWORD :  ");
+call    0 never executed
+    #####:  115:		fgets(newuser.password,20,stdin);
+call    0 never executed
+call    1 never executed
+    #####:  116:		newuser.password[strlen(newuser.password)-1]='\0';
+    #####:  117:		printf("\n");
+call    0 never executed
+    #####:  118:	return newuser;
+        -:  119:}
+function login called 0 returned 0% blocks executed 0%
+    #####:  120:int login(int x)               
+        -:  121:{
+        -:  122:	char str[10];
+        -:  123:	char uname[20];
+        -:  124:	char pwd[20];
+    #####:  125:	if(x==1)
+branch  0 never executed
+branch  1 never executed
+    #####:  126:	strcpy(str,"Client");
+        -:  127:	else
+    #####:  128:	strcpy(str,"Server");
+    #####:  129:	int choice=0;
+    #####:  130:	int Banker_pass=0;
+        -:  131:
+    #####:  132:	system("clear");
+call    0 never executed
+        -:  133:
+    #####:  134:	printf("\n\n\t\t\t\t    REMOTE CALCULATOR ",str);
+call    0 never executed
+    #####:  135:	printf("\n\n\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 %s Side \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2",str);
+call    0 never executed
+    #####:  136:		printf("\n\n\t\t\t_________________________________________\n\n");
+call    0 never executed
+        -:  137:		//printf("\n\n");
+    #####:  138:		printf("\t\t\tEnter Username :  ");
+call    0 never executed
+    #####:  139:		fgets(uname,20,stdin);
+call    0 never executed
+call    1 never executed
+    #####:  140:		uname[strlen(uname)-1]='\0';
+    #####:  141:		printf("\n\n");
+call    0 never executed
+    #####:  142:		printf("\t\t\tEnter Password :  ");
+call    0 never executed
+    #####:  143:		fgets(pwd,20,stdin);
+call    0 never executed
+call    1 never executed
+    #####:  144:		pwd[strlen(pwd)-1]='\0';
+        -:  145:		
+        -:  146:		
+    #####:  147:	if(x==1)
+branch  0 never executed
+branch  1 never executed
+        -:  148:	{
+    #####:  149:		for(int i=0;i<=no_of_users;i++)
+branch  0 never executed
+branch  1 never executed
+        -:  150:		{
+    #####:  151:			if(strcmp(USERS[i].username,uname)==0)
+branch  0 never executed
+branch  1 never executed
+        -:  152:			{
+    #####:  153:				if(strcmp(USERS[i].password,pwd)==0)
+branch  0 never executed
+branch  1 never executed
+        -:  154:				{
+    #####:  155:					printf("\n\n\t\t\tYou have logged in to the server !!!\n\n");
+call    0 never executed
+    #####:  156:					return 1;
+        -:  157:				}
+        -:  158:				else
+        -:  159:					{
+    #####:  160:					printf("\n\n\t\t\tWrong password !!!\n");
+call    0 never executed
+    #####:  161:					return 0;
+        -:  162:					}
+        -:  163:			}
+        -:  164:		}
+    #####:  165:		printf("\n\n\t\t\tUsername not found !!!\n");
+call    0 never executed
+    #####:  166:			return 0;
+        -:  167:		
+        -:  168:	}
+        -:  169:	else
+        -:  170:	{
+    #####:  171:		if(strcmp(adminid,uname)!=0)
+branch  0 never executed
+branch  1 never executed
+        -:  172:		{
+    #####:  173:			printf("\n\n\t\t\tUsername not found !!!\n");
+call    0 never executed
+    #####:  174:			return 0;
+        -:  175:		}
+    #####:  176:		if(!checkpassword(adminpwd,pwd))
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  177:		{
+    #####:  178:			printf("\n\n\t\t\tWrong password !!!\n");
+call    0 never executed
+    #####:  179:			return 0;
+        -:  180:		}
+        -:  181:		
+    #####:  182:		printf("\n\n\t\t\tYou have logged in to the server !!!\n\n");
+call    0 never executed
+    #####:  183:		return 1;
+        -:  184:	}
+        -:  185: //system("read a");
+        -:  186:}
+        -:  187:
+        -:  188:// This is the Main function.
+        -:  189:/*int main(){
+        -:  190:	strcpy(USERS[0].username,"anshul");
+        -:  191:	strcpy(USERS[0].password,"hmm");
+        -:  192:	
+        -:  193:	//login(0);
+        -:  194:	//registeruser();
+        -:  195:	//displayusers();
+        -:  196:	int choice;
+        -:  197:	
+        -:  198:	while(1){
+        -:  199:	//system("clear");
+        -:  200:	printf("\n\n\t\t\t\t    REMOTE CALCULATOR ");
+        -:  201:	printf("\n\n\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Client Side \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+        -:  202:		printf("\n\n\t\t\t_________________________________________\n\n");
+        -:  203:		//printf("\n\n");
+        -:  204:		printf("\n\n\t\t\t 1 : LOGIN  \n\n");
+        -:  205:		//printf("\n\n");
+        -:  206:		printf("\t\t\t 2 : REGISTER  \n\n");
+        -:  207:		//printf("\n\n");
+        -:  208:		printf("\t\t\t 3 : EXIT  \n\n");
+        -:  209:		//printf("\n\n");
+        -:  210:		printf("Enter the choice");
+        -:  211:		scanf("%d",&choice);
+        -:  212:		switch(choice)
+        -:  213:		{
+        -:  214:			case 1:
+        -:  215:				{
+        -:  216:					getchar();
+        -:  217:					login(1);//change para for diff UI
+        -:  218:					break;
+        -:  219:				}
+        -:  220:			case 2:
+        -:  221:				{
+        -:  222:					getchar();
+        -:  223:					registeruser();//change para for diff UI
+        -:  224:					break;
+        -:  225:				}
+        -:  226:			case 3:
+        -:  227:				{	
+        -:  228:					displayusers();
+        -:  229:					return 0;
+        -:  230:				}
+        -:  231:			default:
+        -:  232:				{
+        -:  233:				printf("\t\t\tINVALID CHOICE !!!");
+        -:  234:				return 0;
+        -:  235:				}
+        -:  236:		}	
+        -:  237:	}
+        -:  238:	
+        -:  239:	return 0;
+        -:  240:}*/

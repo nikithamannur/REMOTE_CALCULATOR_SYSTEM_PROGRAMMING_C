@@ -1,0 +1,299 @@
+        -:    0:Source:src/Calculate.c
+        -:    0:Graph:../ToolsReport/GCOV/Server.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    1:#include <stdio.h>
+        -:    2:#include <stdlib.h>
+        -:    3:#include <ctype.h>
+        -:    4:#include <string.h>
+        -:    5:int numbers[1000],tn=-1,to=-1;
+        -:    6:char op[1000];
+        -:    7:
+function push_num called 0 returned 0% blocks executed 0%
+    #####:    8:void push_num(int n)
+        -:    9:{
+    #####:   10:    numbers[++tn]=n;
+    #####:   11:}
+        -:   12:
+function push_op called 0 returned 0% blocks executed 0%
+    #####:   13:void push_op(char ch)
+        -:   14:{
+    #####:   15:    op[++to]=ch;
+    #####:   16:}
+function pop_num called 0 returned 0% blocks executed 0%
+    #####:   17:int pop_num()
+        -:   18:{
+    #####:   19:    return numbers[tn--];
+        -:   20:}
+function pop_op called 0 returned 0% blocks executed 0%
+    #####:   21:char pop_op()
+        -:   22:{
+    #####:   23:    return op[to--];
+        -:   24:}
+function infix_eval called 0 returned 0% blocks executed 0%
+    #####:   25:int infix_eval(int numbers[1000],char op[1000])
+        -:   26:{
+        -:   27:    int x,y;
+        -:   28:    char ope;
+    #####:   29:    x=pop_num();
+call    0 never executed
+    #####:   30:    y=pop_num();
+call    0 never executed
+    #####:   31:    ope=pop_op();
+call    0 never executed
+    #####:   32:    switch(ope)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+        -:   33:    {
+    #####:   34:    case '+':
+    #####:   35:        return x+y;
+    #####:   36:    case '-':
+        -:   37:	{
+    #####:   38:		return y-x;	
+        -:   39:	}
+    #####:   40:    case '*':
+    #####:   41:        return x*y;
+    #####:   42:    case '/':
+    #####:   43:        if(x==0)
+branch  0 never executed
+branch  1 never executed
+        -:   44:        {
+    #####:   45:            printf("\nCannot divide by zero");
+call    0 never executed
+    #####:   46:            exit(0);
+call    0 never executed
+        -:   47:        }
+        -:   48:        else
+    #####:   49:            return y/x;
+        -:   50:    }
+    #####:   51:    return 0;
+        -:   52:}
+function is_operator called 0 returned 0% blocks executed 0%
+    #####:   53:int is_operator(char ch)
+        -:   54:{
+    #####:   55:    return (ch=='+' || ch=='-' || ch=='*' || ch=='/' || ch=='^');
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+branch  8 never executed
+branch  9 never executed
+        -:   56:}
+function precedence called 0 returned 0% blocks executed 0%
+    #####:   57:int precedence(char c)
+        -:   58:{
+    #####:   59:    switch(c)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+        -:   60:    {
+    #####:   61:    case '+':
+    #####:   62:        return 1;
+    #####:   63:    case '-':
+    #####:   64:        return 1;
+    #####:   65:    case '*':
+    #####:   66:        return 2;
+    #####:   67:    case '/':
+    #####:   68:        return 2;
+    #####:   69:    case '^':
+    #####:   70:        return 3;
+        -:   71:    }
+    #####:   72:    return -1;
+        -:   73:}
+        -:   74:
+function eval called 0 returned 0% blocks executed 0%
+    #####:   75:int eval(char *expr)
+        -:   76:{
+        -:   77:    int i,num,output,r;
+        -:   78:    char c;
+    #####:   79:    for(i=0;expr[i]!='\0';i++)
+branch  0 never executed
+branch  1 never executed
+        -:   80:    {
+    #####:   81:        c=expr[i];
+    #####:   82:        if(isdigit(c)!=0)
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   83:        {
+    #####:   84:            num=0;
+    #####:   85:            while(isdigit(c))
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   86:            {
+    #####:   87:                num=num*10+(c-'0');
+    #####:   88:                i++;
+    #####:   89:                if(i<strlen(expr))
+branch  0 never executed
+branch  1 never executed
+    #####:   90:                    c=expr[i];
+        -:   91:                else
+    #####:   92:                    break;
+        -:   93:            }
+    #####:   94:            i--;
+    #####:   95:            push_num(num);
+call    0 never executed
+        -:   96:
+        -:   97:        }
+    #####:   98:        else if(c=='(')
+branch  0 never executed
+branch  1 never executed
+        -:   99:        {
+    #####:  100:            push_op(c);
+call    0 never executed
+        -:  101:        }
+    #####:  102:        else if(c==')')
+branch  0 never executed
+branch  1 never executed
+        -:  103:        {
+    #####:  104:            while(op[to]!='(')
+branch  0 never executed
+branch  1 never executed
+        -:  105:            {
+    #####:  106:                r=infix_eval(numbers,op);
+call    0 never executed
+    #####:  107:                push_num(r);
+call    0 never executed
+        -:  108:            }
+    #####:  109:            pop_op();
+call    0 never executed
+        -:  110:        }
+    #####:  111:        else if(is_operator(c))
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  112:        {
+    #####:  113:            while(to!=-1 && precedence(c)<=precedence(op[to]))
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+        -:  114:                  {
+    #####:  115:                      output=infix_eval(numbers,op);
+call    0 never executed
+    #####:  116:                      push_num(output);
+call    0 never executed
+        -:  117:                  }
+    #####:  118:                  push_op(c);
+call    0 never executed
+        -:  119:        }
+        -:  120:
+        -:  121:    }
+    #####:  122:    while(to!=-1)
+branch  0 never executed
+branch  1 never executed
+        -:  123:    {
+    #####:  124:        output=infix_eval(numbers,op);
+call    0 never executed
+    #####:  125:        push_num(output);
+call    0 never executed
+        -:  126:    }
+    #####:  127:    return pop_num();
+call    0 never executed
+        -:  128:}
+        -:  129:
+function solve called 0 returned 0% blocks executed 0%
+    #####:  130:void solve(char *expr,char * numb, char * opert)
+        -:  131:{
+        -:  132:	//char expr[1000];
+        -:  133:	 char oper[1000];
+        -:  134:	 int num[1000];
+    #####:  135:      int i=0,k=0;
+    #####:  136:    char *token=strtok(numb,":");
+call    0 never executed
+    #####:  137:	int no_of_arguments=atoi(token);
+call    0 never executed
+    #####:  138:    while(token!=NULL)
+branch  0 never executed
+branch  1 never executed
+        -:  139:    {
+    #####:  140:        num[i]=atoi(token);
+call    0 never executed
+    #####:  141:        token=strtok(NULL,":");
+call    0 never executed
+    #####:  142:        i++;
+        -:  143:    }
+        -:  144:
+    #####:  145:    token=strtok(opert,";");
+call    0 never executed
+    #####:  146:    while(token!=NULL)
+branch  0 never executed
+branch  1 never executed
+        -:  147:    {
+    #####:  148:       oper[k]=*token;
+    #####:  149:        token=strtok(NULL,";");
+call    0 never executed
+    #####:  150:        k++;
+        -:  151:    }
+        -:  152:	
+    #####:  153:	i=0;
+    #####:  154:	k=0;
+    #####:  155:	int x=0;
+        -:  156:    
+    #####:  157:	for(i=1;i<no_of_arguments;i++,k++)
+branch  0 never executed
+branch  1 never executed
+        -:  158:	{
+    #####:  159:	  int op1=num[i];
+        -:  160:	
+    #####:  161:	   char opd=oper[k];
+        -:  162:	   char str[100];
+    #####:  163:        sprintf(str, "%d", op1);
+    #####:  164:	   strcat(expr,str);
+    #####:  165:	   strncat(expr,&opd,1);
+        -:  166:	}
+    #####:  167:	int op1=num[i];
+        -:  168:    char str[100];
+    #####:  169:    sprintf(str, "%d", op1);
+    #####:  170:    strcat(expr,str);
+        -:  171:
+        -:  172:    
+    #####:  173:        return ;
+        -:  174:
+        -:  175:}
+        -:  176:
+        -:  177:
+        -:  178:
+        -:  179:/*
+        -:  180:int main()
+        -:  181:{
+        -:  182:    char expr[1000],oper[1000];
+        -:  183:    int t[1000],i=0,k=0;
+        -:  184:    //gets(expr);
+        -:  185:   // gets(oper);
+        -:  186:    char *token=strtok(expr," ");
+        -:  187:    while(token!=NULL)
+        -:  188:    {
+        -:  189:        t[i]=atoi(token);
+        -:  190:        token=strtok(NULL," ");
+        -:  191:        i++;
+        -:  192:    }
+        -:  193:
+        -:  194:    token=strtok(oper,";");
+        -:  195:    while(token!=NULL)
+        -:  196:    {
+        -:  197:       t[k]=atoi(token);
+        -:  198:        token=strtok(NULL,";");
+        -:  199:        k++;
+        -:  200:    }
+        -:  201:    int y=t[0];*/
+        -:  202:    //ans();
+        -:  203:    /*for(int j=0;j<i;j++)
+        -:  204:        printf("%d ",t[j]);
+        -:  205:    printf("%d",eval(expr));
+        -:  206:    return 0;
+        -:  207:}*/
+        -:  208:
